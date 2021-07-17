@@ -112,9 +112,9 @@ $route['akun/(:num)/hapus'] = 'akun/delete/$1';
 $route['akun/(:num)/reset'] = 'akun/reset/$1';
 
 $route['siswa/baru'] = 'siswa/create';
-$route['siswa/(:num)'] = 'siswa/show/$1';
-$route['siswa/(:num)/edit'] = 'siswa/edit/$1';
-$route['siswa/(:num)/hapus'] = 'siswa/delete/$1';
+$route['siswa/(:any)'] = 'siswa/show/$1';
+$route['siswa/(:any)/edit'] = 'siswa/edit/$1';
+$route['siswa/(:any)/hapus'] = 'siswa/delete/$1';
 
 $route['petugas/baru'] = 'petugas/create';
 $route['petugas/(:num)'] = 'petugas/show/$1';

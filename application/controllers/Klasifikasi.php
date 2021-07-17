@@ -58,7 +58,8 @@ class Klasifikasi extends CI_Controller {
 	private function _store()
 	{
 		$data = $this->input->post();
-		$message = 'Data klasifikasi ' . ($this->klasifikasi->insert($data) ? 'berhasil' : 'gagal') . ' ditambahkan!';
+		$this->klasifikasi->insert($data);
+		$message = 'Data klasifikasi berhasil ditambahkan!';
 		setMessage($message);
 		redirect('/klasifikasi');
 	}
