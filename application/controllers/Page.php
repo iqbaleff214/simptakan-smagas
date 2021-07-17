@@ -5,6 +5,7 @@ class Page extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+		if (!isLogin()) return redirect('/login');
 
         $this->load->model(Buku_model::class, 'buku');
         $this->load->model(Siswa_model::class, 'siswa');
@@ -24,7 +25,6 @@ class Page extends CI_Controller {
 
 	public function dashboard()
 	{
-		if (!isLogin()) return redirect('/login');
         if (isJabatan('Anggota') or isJabatan('Pengunjung')) return redirect('katalog');
         $data = [
             'title' => 'Dashboard',
@@ -43,7 +43,6 @@ class Page extends CI_Controller {
 
     public function peminjaman()
     {
-		if (!isLogin()) return redirect('/login');
         $data = [
             'title' => 'Laporan Peminjaman',
             'sidebar' => ['peminjaman'],
@@ -53,9 +52,19 @@ class Page extends CI_Controller {
 		view('peminjaman/history', $data);
     }
 
+    public function peminjaman_today()
+    {
+        $data = [
+            'title' => 'Laporan Peminjaman',
+            'sidebar' => ['peminjaman'],
+            'items' => $this->peminjaman_detail->getAllDetailToday(),
+        ];
+
+		view('peminjaman/history', $data);
+    }
+
     public function pengadaan()
     {
-		if (!isLogin()) return redirect('/login');
         $data = [
             'title' => 'Laporan Pengadaan',
             'sidebar' => ['pengadaan'],
@@ -67,7 +76,6 @@ class Page extends CI_Controller {
 
     public function pengeluaran()
     {
-		if (!isLogin()) return redirect('/login');
         $data = [
             'title' => 'Laporan Pengeluaran',
             'sidebar' => ['pengeluaran'],
@@ -79,7 +87,6 @@ class Page extends CI_Controller {
 
     public function pengunjung()
     {
-		if (!isLogin()) return redirect('/login');
         $data = [
             'title' => 'Laporan Kunjungan',
             'sidebar' => ['pengunjung'],
@@ -91,7 +98,6 @@ class Page extends CI_Controller {
 
     public function pengunjung_today()
     {
-		if (!isLogin()) return redirect('/login');
         $data = [
             'title' => 'Laporan Kunjungan',
             'sidebar' => ['pengunjung'],

@@ -15,6 +15,12 @@ class PeminjamanDetail_model extends MY_Model
 		return $this->db->get($this->table)->result_array();
 	}
 
+	public function getAllDetailToday()
+	{
+		$this->db->where('DATE(peminjaman.tanggal_pinjam)=CURDATE()');
+		return $this->getAllDetail();
+	}
+
 	public function getDetail($id)
 	{
 		$this->db->select("peminjaman_detail.*, peminjaman.*, siswa.nama, buku.judul");
@@ -28,6 +34,12 @@ class PeminjamanDetail_model extends MY_Model
 	public function getAllDipinjam()
 	{
 		$this->db->where('peminjaman_detail.tanggal_kembali', null);
+		return $this->getAllDetail();
+	}
+
+	public function getAllDipinjamNis($nis)
+	{
+		$this->db->where('siswa.nis', $nis);
 		return $this->getAllDetail();
 	}
 

@@ -19,12 +19,25 @@
       </div>
       <?php endif; ?>
 
-      <div class="box box-primary">
+        <div class="box box-primary">
             <div class="box-header">
               <h3 class="box-title">
                   <?php if(isJabatan('Petugas')): ?>
                     <a href="<?= base_url('peminjaman'); ?>" class="btn btn-default">Kembali</a>
+                  <?php else: ?>
+                    <a href="<?= base_url('laporan-peminjaman-hari-ini'); ?>" class="btn btn-primary">Hari ini</a>
+                    <a href="<?= base_url('laporan-peminjaman'); ?>" class="btn btn-success">Semua</a>
                   <?php endif; ?>
+                  <div class="form-group">
+                    <br>
+                    <div class="input-group">
+                      <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                      <input type="text" class="form-control pull-right" id="reservation">
+                    </div>
+                    <!-- /.input group -->
+                  </div>
               </h3>
             </div>
             <!-- /.box-header -->
@@ -63,6 +76,7 @@
             <!-- /.box-body -->
         </div>
         <!-- /.box -->
+        
 
     </section>
     <!-- /.content -->

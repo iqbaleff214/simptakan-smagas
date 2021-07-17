@@ -57,6 +57,9 @@
         <ul class="nav navbar-nav">
             <li class="<?= sidebar('buku', $sidebar); ?>"><a href="<?= base_url('katalog'); ?>">Buku</a></li>
             <li class="<?= sidebar('ebook', $sidebar); ?>"><a href="<?= base_url('katalog-ebook'); ?>">E-Book</a></li>
+            <li class="<?= sidebar('peminjaman', $sidebar); ?>"><a href="<?= base_url('pinjam-buku'); ?>">Peminjaman</a></li>
+            <li class="<?= sidebar('riwayat', $sidebar); ?>"><a href="<?= base_url('riwayat-pinjam-buku'); ?>">Riwayat Peminjaman</a></li>
+            <li><a href="<?= site_url('cetak-kartu-anggota') ?>" target="_blank">Kartu Anggota</a></li>
         </ul>
         <?php endif; ?>
         <!-- /.navbar-collapse -->

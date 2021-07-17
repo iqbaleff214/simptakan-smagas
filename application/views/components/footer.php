@@ -80,6 +80,11 @@
 <script src="<?= asset('bower_components/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
 <!-- Select2 -->
 <script src="<?= asset('bower_components/select2/dist/js/select2.full.min.js') ?>"></script>
+<!-- date-range-picker -->
+<script src="<?= asset('bower_components/moment/min/moment.min.js') ?>"></script>
+<script src="<?= asset('bower_components/bootstrap-daterangepicker/daterangepicker.js') ?>"></script>
+<!-- bootstrap datepicker -->
+<script src="<?= asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') ?>"></script>
 <!-- DataTables -->
 <script src="<?= asset('bower_components/datatables.net/js/jquery.dataTables.min.js') ?>"></script>
 <script src="<?= asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') ?>"></script>
@@ -140,8 +145,7 @@
     }
 
     if ($('#table1').length) {
-      console.log('table 1');
-      const table1 = $('#table1').DataTable({
+      var table1 = $('#table1').DataTable({
         responsive: true,
         buttons: [ 
           {
@@ -173,14 +177,15 @@
               text: 'Kolom',
           },
         ]
-      }).buttons().container().appendTo( '#table1_wrapper .col-sm-6:eq(0)' );
-      new $.fn.dataTable.FixedHeader( table1 );
+      });
+      table1.buttons().container().appendTo( '#table1_wrapper .col-sm-6:eq(0)' );
+      // new $.fn.dataTable.FixedHeader( table1 );
     }
 
     if ($('#table2').length) {
       console.log('table 2');
       const table2 = $('#table2').DataTable({responsive: true})
-      new $.fn.dataTable.FixedHeader( table2 );
+      // new $.fn.dataTable.FixedHeader( table2 );
     }
 
     if ($('#table3').length) {
@@ -194,7 +199,70 @@
         'info'        : true,
         'autoWidth'   : false
       })
-      new $.fn.dataTable.FixedHeader( table3 );
+      // new $.fn.dataTable.FixedHeader( table3 );
+    }
+
+    if ($('#reservation').length) {
+      //Date range picker
+      $('#reservation').daterangepicker()
+      //Date range picker with time picker
+      $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, locale: { format: 'MM/DD/YYYY hh:mm A' }})
+      //Date range as a button
+      $('#daterange-btn').daterangepicker(
+        {
+          ranges   : {
+            'Today'       : [moment(), moment()],
+            'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+            'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          },
+          startDate: moment().subtract(29, 'days'),
+          endDate  : moment()
+        },
+        function (start, end) {
+          $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+        }
+      )
+      //fungsi untuk filtering data berdasarkan tanggal 
+      var start_date;
+      var end_date;
+      var DateFilterFunction = (function (oSettings, aData, iDataIndex) {
+          var dateStart = parseDateValue(start_date);
+          var dateEnd = parseDateValue(end_date);
+          //Kolom tanggal yang akan kita gunakan berada dalam urutan 2, karena dihitung mulai dari 0
+          //nama depan = 0
+          //nama belakang = 1
+          //tanggal terdaftar =2
+          var evalDate= parseDateValue(aData[3]);
+            if ( ( isNaN( dateStart ) && isNaN( dateEnd ) ) ||
+                ( isNaN( dateStart ) && evalDate <= dateEnd ) ||
+                ( dateStart <= evalDate && isNaN( dateEnd ) ) ||
+                ( dateStart <= evalDate && evalDate <= dateEnd ) )
+            {
+                return true;
+            }
+            return false;
+      });
+
+      // fungsi untuk converting format tanggal dd/mm/yyyy menjadi format tanggal javascript menggunakan zona aktubrowser
+      function parseDateValue(rawDate) {
+          var dateArray= rawDate.split("/");
+          var parsedDate= new Date(dateArray[2], parseInt(dateArray[1])-1, dateArray[0]);  // -1 because months are from 0 to 11   
+          return parsedDate;
+      }  
+  
+      $('#reservation').on('apply.daterangepicker', function(ev, picker) {
+         $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+         start_date=picker.startDate.format('DD/MM/YYYY');
+         end_date=picker.endDate.format('DD/MM/YYYY');
+        //  alert(start_date + " sampai " + end_date);
+         $.fn.dataTableExt.afnFiltering.push(DateFilterFunction);
+        //  console.log(table1);
+         table1.draw();
+      });
+      
     }
 
     <?php if(isset($populer)): ?>

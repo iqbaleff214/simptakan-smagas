@@ -62,6 +62,11 @@ $route['katalog'] = 'katalog';
 $route['katalog/(:num)'] = 'katalog/show/$1';
 $route['katalog-ebook'] = 'katalog/ebook';
 $route['katalog-ebook/(:num)'] = 'katalog/show_ebook/$1';
+$route['pinjam-buku'] = 'katalog/pinjam';
+$route['riwayat-pinjam-buku'] = 'katalog/history';
+
+$route['bukti-pinjam-buku/(:num)'] = 'cetak/peminjaman/$1';
+$route['cetak-kartu-anggota'] = 'cetak/anggota';
 
 $route['dashboard'] = 'page/dashboard';
 $route['peminjaman'] = 'peminjaman';
@@ -77,6 +82,7 @@ $route['pengeluaran'] = 'pengeluaran';
 $route['laporan-pengunjung'] = 'page/pengunjung';
 $route['laporan-pengunjung-hari-ini'] = 'page/pengunjung_today';
 $route['laporan-peminjaman'] = 'page/peminjaman';
+$route['laporan-peminjaman-hari-ini'] = 'page/peminjaman_today';
 $route['laporan-pengadaan'] = 'page/pengadaan';
 $route['laporan-pengeluaran'] = 'page/pengeluaran';
 

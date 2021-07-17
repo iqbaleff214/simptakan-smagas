@@ -13,6 +13,10 @@
   <link rel="stylesheet" href="<?= asset('bower_components/font-awesome/css/font-awesome.min.css') ?>">
   <!-- Ionicons -->
   <link rel="stylesheet" href="<?= asset('bower_components/Ionicons/css/ionicons.min.css') ?>">
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="<?= asset('bower_components/bootstrap-daterangepicker/daterangepicker.css') ?>">
+  <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="<?= asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') ?>">
   <!-- Select2 -->
   <link rel="stylesheet" href="<?= asset('bower_components/select2/dist/css/select2.min.css') ?>">
   <!-- DataTables -->
