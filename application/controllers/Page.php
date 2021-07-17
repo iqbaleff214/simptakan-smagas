@@ -14,6 +14,7 @@ class Page extends CI_Controller {
         $this->load->model(PeminjamanDetail_model::class, 'peminjaman_detail');
         $this->load->model(PengadaanDetail_model::class, 'pengadaan_detail');
         $this->load->model(BukuKeluar_model::class, 'pengeluaran');
+        $this->load->model(Pengunjung_model::class, 'pengunjung');
     }
 
 	public function index()
@@ -74,5 +75,29 @@ class Page extends CI_Controller {
         ];
 
 		view('pengeluaran/history', $data);
+    }
+
+    public function pengunjung()
+    {
+		if (!isLogin()) return redirect('/login');
+        $data = [
+            'title' => 'Laporan Kunjungan',
+            'sidebar' => ['pengunjung'],
+            'items' => $this->pengunjung->getAll(),
+        ];
+
+		view('pengunjung/index', $data);
+    }
+
+    public function pengunjung_today()
+    {
+		if (!isLogin()) return redirect('/login');
+        $data = [
+            'title' => 'Laporan Kunjungan',
+            'sidebar' => ['pengunjung'],
+            'items' => $this->pengunjung->getAllToday(),
+        ];
+
+		view('pengunjung/index', $data);
     }
 }

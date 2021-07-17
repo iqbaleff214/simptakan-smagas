@@ -74,6 +74,8 @@ $route['perpanjang'] = 'peminjaman/perpanjang';
 $route['pengembalian/(:num)'] = 'peminjaman/pengembalian/$1';
 $route['pengeluaran'] = 'pengeluaran';
 
+$route['laporan-pengunjung'] = 'page/pengunjung';
+$route['laporan-pengunjung-hari-ini'] = 'page/pengunjung_today';
 $route['laporan-peminjaman'] = 'page/peminjaman';
 $route['laporan-pengadaan'] = 'page/pengadaan';
 $route['laporan-pengeluaran'] = 'page/pengeluaran';

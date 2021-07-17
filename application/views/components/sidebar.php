@@ -72,7 +72,7 @@
 
         <?php if(isJabatan('Kepala')): ?>
         <li class="header">LAPORAN</li>
-        <?php $masterMenu = [ 'peminjaman' => 'fa-exchange','pengadaan' => 'fa-forward', 'pengeluaran' => 'fa-backward', ]; ?>
+        <?php $masterMenu = [ 'peminjaman' => 'fa-exchange','pengadaan' => 'fa-forward', 'pengeluaran' => 'fa-backward', 'pengunjung' => 'fa-male']; ?>
         <?php foreach($masterMenu as $link => $icon): ?>
         <li class="<?= sidebar($link, $sidebar); ?>"><a href="<?= base_url('laporan-'.$link); ?>"><i class="fa <?= $icon; ?>"></i> <span><?= ucfirst($link); ?></span></a></li>
         <?php endforeach; ?>

@@ -11,4 +11,10 @@ class Pengunjung_model extends MY_Model
 		$this->db->where('DATE(pengunjung.tanggal)=CURDATE()');
 		return $this->count();
 	}
+	
+	public function getAllToday()
+	{
+		$this->db->where('DATE(pengunjung.tanggal)=CURDATE()');
+		return $this->getAll();
+	}
 }
