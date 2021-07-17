@@ -24,13 +24,23 @@
                 <div class="form-group <?= isInvalid('nis') ?>">
                     <label for="nis" class="col-sm-2 control-label">NIS</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nis" name="nis" placeholder="Masukkan NIS" value="<?= set_value('nis', $item['nis']); ?>">
+                        <input type="text" class="form-control" id="nis" name="nis" placeholder="Masukkan NIS" value="<?= set_value('nis', $item['nis']); ?>" readonly>
                     </div>
                 </div>
                 <div class="form-group <?= isInvalid('nama') ?>">
                     <label for="nama" class="col-sm-2 control-label">Nama</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama" value="<?= set_value('nama', $item['nama']); ?>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="jenis_kelamin" class="col-sm-2 control-label">Jenis Kelamin</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
+                            <?php foreach(['L' => 'Laki-laki', 'P' => 'Perempuan'] as $key => $val): ?>
+                              <option <?= selected($item['jenis_kelamin'], $key); ?> value="<?= $key; ?>" ><?= $val; ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group <?= isInvalid('kelas') ?>">
@@ -51,27 +61,12 @@
                         <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email" value="<?= set_value('email', $item['email']); ?>">
                     </div>
                 </div>
-                <div class="form-group <?= isInvalid('password') ?>">
-                    <label for="password" class="col-sm-2 control-label">Password</label>
-                    <div class="col-sm-10">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Kosongkan jika tidak ingin diedit" value="<?= set_value('password'); ?>">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="is_active" class="col-sm-2 control-label">Status</label>
-                    <div class="col-sm-10">
-                        <select class="form-control" name="is_active" id="is_active">
-                          <option <?= selected($item['is_active'], 1); ?> value="1">Aktif</option>
-                          <option <?= selected($item['is_active'], 0); ?> value="0">Tidak Aktif</option>
-                        </select>
-                    </div>
-                </div>
                 <div class="form-group <?= isInvalid('foto') ?>">
                     <label for="foto" class="col-sm-2 control-label">Foto</label>
                     <div class="col-sm-10 row">
                       <div class="col-md-6 col-6">
                         <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="foto" name="foto" required>
+                          <input type="file" class="custom-file-input" id="foto" name="foto">
                           <label class="custom-file-label" for="foto" data-browse="Cari">Pilih Gambar (maks: 2048KB)</label>
                         </div>
                       </div>

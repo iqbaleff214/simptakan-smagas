@@ -16,8 +16,8 @@
     <p class="login-box-msg">Silakan login untuk melanjutkan</p>
 
     <form action="<?= current_url(); ?>" method="post">
-      <div class="form-group has-feedback <?= isInvalid('email'); ?>">
-        <input type="email" class="form-control" placeholder="Email" name="email" value="<?= set_value('email'); ?>">
+      <div class="form-group has-feedback <?= isInvalid('username'); ?>">
+        <input type="text" class="form-control" placeholder="Username" name="username" value="<?= set_value('username'); ?>">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback <?= isInvalid('password'); ?>">
@@ -35,8 +35,9 @@
       </div>
     </form>
 
-    <a href="#">I forgot my password</a><br>
-    <a href="#" class="text-center">Register a new membership</a>
+    <a href="<?= base_url('logbook'); ?>" class="text-center">Masuk sebagai Pengunjung</a>
+    <br>
+    <a href="<?= base_url('lupa-password'); ?>">Lupa password</a><br>
 
   </div>
   <!-- /.login-box-body -->

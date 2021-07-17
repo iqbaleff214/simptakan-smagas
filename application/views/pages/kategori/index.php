@@ -32,6 +32,7 @@
                     <tr>
                         <th style="width: 20px;">No.</th>
                         <th>Kategori</th>
+                        <th>Keterangan</th>
                         <th style="width: 100px;" class="notexport">Aksi</th>
                     </tr>
                 </thead>
@@ -41,6 +42,7 @@
                     <tr>
                         <td><?= $no++; ?></td>
                         <td><?= $item['kategori']; ?></td>
+                        <td><?= $item['keterangan'] ?: '-'; ?></td>
                         <td>
                           <a href="<?= base_url("kategori/{$item['id_kategori']}/edit"); ?>" class="btn btn-info btn-sm">Edit</a>
                           <a href="<?= base_url("kategori/{$item['id_kategori']}/hapus"); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>

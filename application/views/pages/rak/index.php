@@ -32,6 +32,7 @@
                     <tr>
                         <th style="width: 20px;">No.</th>
                         <th>Rak</th>
+                        <th>Keterangan</th>
                         <th style="width: 100px;" class="notexport">Aksi</th>
                     </tr>
                 </thead>
@@ -41,6 +42,7 @@
                     <tr>
                         <td><?= $no++; ?></td>
                         <td><?= $item['rak']; ?></td>
+                        <td><?= $item['keterangan'] ?: '-'; ?></td>
                         <td>
                           <a href="<?= base_url("rak/{$item['id_rak']}/edit"); ?>" class="btn btn-info btn-sm">Edit</a>
                           <a href="<?= base_url("rak/{$item['id_rak']}/hapus"); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>

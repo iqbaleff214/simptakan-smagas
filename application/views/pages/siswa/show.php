@@ -23,10 +23,10 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-12 col-md-6">
-                    <div class="form-group <?= isInvalid('date_created') ?>">
-                        <label for="date_created" class="col-sm-2 control-label">Tanggal Registrasi</label>
+                    <div class="form-group <?= isInvalid('tanggal') ?>">
+                        <label for="tanggal" class="col-sm-2 control-label">Tanggal Registrasi</label>
                         <div class="col-sm-10">
-                            <input readonly type="text" class="form-control" id="date_created" name="date_created" placeholder="Tanggal Registrasi" value="<?= set_value('date_created', $item['date_created']); ?>">
+                            <input readonly type="text" class="form-control" id="tanggal" name="tanggal" placeholder="Tanggal Registrasi" value="<?= set_value('tanggal', $item['tanggal']); ?>">
                         </div>
                     </div>
                     <div class="form-group <?= isInvalid('nis') ?>">
@@ -39,6 +39,12 @@
                         <label for="nama" class="col-sm-2 control-label">Nama</label>
                         <div class="col-sm-10">
                             <input readonly type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama" value="<?= set_value('nama', $item['nama']); ?>">
+                        </div>
+                    </div>
+                    <div class="form-group <?= isInvalid('jenis_kelamin') ?>">
+                        <label for="jenis_kelamin" class="col-sm-2 control-label">Jenis Kelamin</label>
+                        <div class="col-sm-10">
+                            <input readonly type="text" class="form-control" id="jenis_kelamin" name="jenis_kelamin" placeholder="Masukkan Nama" value="<?= set_value('jenis_kelamin', $item['jenis_kelamin']=='L' ? 'Laki-laki' : 'Perempuan'); ?>">
                         </div>
                     </div>
                     <div class="form-group <?= isInvalid('kelas') ?>">
@@ -57,12 +63,6 @@
                         <label for="email" class="col-sm-2 control-label">Email</label>
                         <div class="col-sm-10">
                             <input readonly type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email" value="<?= set_value('email', $item['email']); ?>">
-                        </div>
-                    </div>
-                    <div class="form-group <?= isInvalid('email') ?>">
-                        <label for="is_active" class="col-sm-2 control-label">Status</label>
-                        <div class="col-sm-10">
-                            <input readonly type="text" class="form-control" id="is_active" name="is_active" placeholder="Masukkan Email" value="<?= set_value('is_active', $item['is_active'] ? 'Aktif' : 'Tidak Aktif'); ?>">
                         </div>
                     </div>
                 </div>

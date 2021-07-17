@@ -55,6 +55,28 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['login'] = 'auth';
 $route['logout'] = 'auth/logout';
+$route['lupa-password'] = 'auth/forgot';
+$route['logbook'] = 'auth/logbook';
+
+$route['katalog'] = 'katalog';
+$route['katalog/(:num)'] = 'katalog/show/$1';
+$route['katalog-ebook'] = 'katalog/ebook';
+$route['katalog-ebook/(:num)'] = 'katalog/show_ebook/$1';
+
+$route['dashboard'] = 'page/dashboard';
+$route['peminjaman'] = 'peminjaman';
+$route['riwayat-peminjaman'] = 'peminjaman/history';
+$route['pengadaan'] = 'pengadaan';
+$route['riwayat-pengadaan'] = 'pengadaan/history';
+$route['pengeluaran'] = 'pengeluaran';
+$route['riwayat-pengeluaran'] = 'pengeluaran/history';
+$route['perpanjang'] = 'peminjaman/perpanjang';
+$route['pengembalian/(:num)'] = 'peminjaman/pengembalian/$1';
+$route['pengeluaran'] = 'pengeluaran';
+
+$route['laporan-peminjaman'] = 'page/peminjaman';
+$route['laporan-pengadaan'] = 'page/pengadaan';
+$route['laporan-pengeluaran'] = 'page/pengeluaran';
 
 $route['rak/baru'] = 'rak/create';
 $route['rak/(:num)/edit'] = 'rak/edit/$1';
@@ -64,20 +86,35 @@ $route['kategori/baru'] = 'kategori/create';
 $route['kategori/(:num)/edit'] = 'kategori/edit/$1';
 $route['kategori/(:num)/hapus'] = 'kategori/delete/$1';
 
+$route['klasifikasi/baru'] = 'klasifikasi/create';
+$route['klasifikasi/(:num)/edit'] = 'klasifikasi/edit/$1';
+$route['klasifikasi/(:num)/hapus'] = 'klasifikasi/delete/$1';
+
 $route['penerbit/baru'] = 'penerbit/create';
 $route['penerbit/(:num)/edit'] = 'penerbit/edit/$1';
 $route['penerbit/(:num)/hapus'] = 'penerbit/delete/$1';
 
 $route['buku/baru'] = 'buku/create';
+$route['buku/(:num)'] = 'buku/show/$1';
 $route['buku/(:num)/edit'] = 'buku/edit/$1';
 $route['buku/(:num)/hapus'] = 'buku/delete/$1';
 
-$route['admin/baru'] = 'admin/create';
-$route['admin/(:num)/edit'] = 'admin/edit/$1';
-$route['admin/(:num)/hapus'] = 'admin/delete/$1';
-$route['admin/(:num)/reset'] = 'admin/reset/$1';
+$route['ebook/baru'] = 'ebook/create';
+$route['ebook/(:num)'] = 'ebook/show/$1';
+$route['ebook/(:num)/edit'] = 'ebook/edit/$1';
+$route['ebook/(:num)/hapus'] = 'ebook/delete/$1';
+
+$route['akun/baru'] = 'akun/create';
+$route['akun/(:num)/edit'] = 'akun/edit/$1';
+$route['akun/(:num)/hapus'] = 'akun/delete/$1';
+$route['akun/(:num)/reset'] = 'akun/reset/$1';
 
 $route['siswa/baru'] = 'siswa/create';
 $route['siswa/(:num)'] = 'siswa/show/$1';
 $route['siswa/(:num)/edit'] = 'siswa/edit/$1';
 $route['siswa/(:num)/hapus'] = 'siswa/delete/$1';
+
+$route['petugas/baru'] = 'petugas/create';
+$route['petugas/(:num)'] = 'petugas/show/$1';
+$route['petugas/(:num)/edit'] = 'petugas/edit/$1';
+$route['petugas/(:num)/hapus'] = 'petugas/delete/$1';

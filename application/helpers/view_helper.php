@@ -22,6 +22,15 @@ if (!function_exists('view')) {
 	}
 }
 
+if (!function_exists('guestView')) {
+	function guestView($view, $data = []) {
+		$ci =& get_instance();
+		$ci->load->view('guest_components/header', $data);
+		$ci->load->view("pages/$view");
+		$ci->load->view('guest_components/footer');
+	}
+}
+
 if (!function_exists('authView')) {
 	function authView($view, $data = []) {
 		$ci =& get_instance();
@@ -66,6 +75,20 @@ if (!function_exists('status')) {
 		$status = $data == null ? $neutral : ($data ? $positive : $negative) ;
 
 		return "<span class='badge badge-{$color}'>$status</span>";
+	}
+}
+
+if (!function_exists('isbn')) {
+	function isbn($isbn): string
+	{
+		$kata = str_split($isbn);
+	
+		array_splice($kata, 3, 0, '-');
+		array_splice($kata, 7, 0, '-');
+		array_splice($kata, 13, 0, '-');
+		array_splice($kata, 15, 0, '-');
+	
+		return implode($kata);
 	}
 }
 

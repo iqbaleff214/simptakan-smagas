@@ -45,15 +45,51 @@ if (!function_exists('getMessage')) {
 
 if (!function_exists('isLogin')) {
 	function isLogin() {
-		return hasSession('email');
+		return hasSession('username');
 	}
 }
 
 if (!function_exists('logout')) {
 	function logout() {
 		unset($_SESSION['nama']);
-		unset($_SESSION['email']);
+		unset($_SESSION['username']);
+		unset($_SESSION['jabatan']);
+		unset($_SESSION['foto']);
+		unset($_SESSION['nis']);
+		unset($_SESSION['id']);
 	}
 }
+
+if (!function_exists('isJabatan')) {
+	function isJabatan($level) {
+		return $_SESSION['jabatan']==$level;
+	}
+}
+
+if (!function_exists('isNot')) {
+	function isNot($level) {
+		if (!isJabatan($level)) return redirect('/dashboard');
+	}
+}
+
+if (!function_exists('isNotKepala')) {
+	function isNotKepala() {
+		isNot('Kepala');
+	}
+}
+
+if (!function_exists('isNotPetugas')) {
+	function isNotPetugas() {
+		isNot('Petugas');
+	}
+}
+
+if (!function_exists('isNotAnggota')) {
+	function isNotAnggota() {
+		isNot('Anggota');
+	}
+}
+
+
 
 

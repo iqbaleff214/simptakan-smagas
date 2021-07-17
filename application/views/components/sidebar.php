@@ -6,13 +6,15 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?= asset('dist/img/avatar5.png') ?>" class="img-circle" alt="User Image">
+          <!-- <img src="" alt="<?= $_SESSION['nama']; ?>" class="img-circle" alt="User Image"> -->
+          <div class="img-circle" style="width: 35px; height: 35px; background-repeat: no-repeat;background-size: 35px; background-position: center; background-image: url('<?= $_SESSION['foto'] ? upload($_SESSION['foto']) : asset('img/avatar.png') ?>') ;"></div>
         </div>
         <div class="pull-left info">
           <p><?= $_SESSION['nama']; ?></p>
-          <a href="#"><i class="fa fa-circle text-success"></i> <?= $_SESSION['email']; ?></a>
+          <a href="#"><i class="fa fa-circle text-success"></i> <?= $_SESSION['jabatan']; ?></a>
         </div>
       </div>
+      <br>
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENU UTAMA</li>
@@ -30,12 +32,21 @@
         </li> -->
         
         <li class="<?= sidebar('dashboard', $sidebar); ?>">
-          <a href="<?= base_url(); ?>">
+          <a href="<?= base_url('dashboard'); ?>">
             <i class="fa fa-th"></i> <span>Dashboard</span>
           </a>
         </li>
+
+        <?php if(isJabatan('Petugas')): ?>
+        <?php $masterMenu = [ 'peminjaman' => 'fa-exchange','pengadaan' => 'fa-forward', 'pengeluaran' => 'fa-backward', ]; ?>
+        <?php foreach($masterMenu as $link => $icon): ?>
+        <li class="<?= sidebar($link, $sidebar); ?>"><a href="<?= base_url($link); ?>"><i class="fa <?= $icon; ?>"></i> <span><?= ucfirst($link); ?></span></a></li>
+        <?php endforeach; ?>
+        <?php endif; ?>
+
         <li class="header">DATA MASTER</li>
-        <?php $masterMenu = [ 'rak' => 'fa-stack-exchange', 'kategori' => 'fa-tag', 'penerbit' => 'fa-building-o', ]; ?>
+        <?php if(isJabatan('Petugas')): ?>
+        <?php $masterMenu = [ 'rak' => 'fa-stack-exchange', 'kategori' => 'fa-tag', 'penerbit' => 'fa-building-o', 'klasifikasi' => 'fa-object-group' ]; ?>
         <li class="treeview <?= sidebar('karakteristik', $sidebar); ?>">
           <a href="#">
             <i class="fa fa-tags"></i> <span>Karakteristik</span>
@@ -49,12 +60,24 @@
             <?php endforeach; ?>
           </ul>
         </li>
+        <?php endif; ?>
 
 
-        <?php $masterMenu = [ 'siswa' => 'fa-user', 'buku' => 'fa-book', 'admin' => 'fa-user-secret', ]; ?>
+        <?php $masterMenu = [ 'buku' => 'fa-book', 'ebook' => 'fa-bookmark-o', 'siswa' => 'fa-user', ]; ?>
+        <?php if(isJabatan('Kepala')) $masterMenu['petugas'] = 'fa-user-secret'; ?>
+        <?php if(isJabatan('Petugas')) $masterMenu['akun'] = 'fa-users'; ?>
         <?php foreach($masterMenu as $link => $icon): ?>
         <li class="<?= sidebar($link, $sidebar); ?>"><a href="<?= base_url($link); ?>"><i class="fa <?= $icon; ?>"></i> <span><?= ucfirst($link); ?></span></a></li>
         <?php endforeach; ?>
+
+        <?php if(isJabatan('Kepala')): ?>
+        <li class="header">LAPORAN</li>
+        <?php $masterMenu = [ 'peminjaman' => 'fa-exchange','pengadaan' => 'fa-forward', 'pengeluaran' => 'fa-backward', ]; ?>
+        <?php foreach($masterMenu as $link => $icon): ?>
+        <li class="<?= sidebar($link, $sidebar); ?>"><a href="<?= base_url('laporan-'.$link); ?>"><i class="fa <?= $icon; ?>"></i> <span><?= ucfirst($link); ?></span></a></li>
+        <?php endforeach; ?>
+
+        <?php endif; ?>
 
       </ul>
     </section>

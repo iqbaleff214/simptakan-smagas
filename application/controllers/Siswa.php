@@ -7,6 +7,7 @@ class Siswa extends CI_Controller {
         parent::__construct();
 		if (!isLogin()) return redirect('/login');
         $this->load->model(Siswa_model::class, 'siswa');
+        $this->load->model(Akun_model::class, 'akun');
     }
 
 	public function index()
@@ -66,19 +67,29 @@ class Siswa extends CI_Controller {
     {
         $old = $this->siswa->get($id);
         if ($old['foto']) unlink("./public/uploads/{$old['foto']}");
-		$message = 'Data siswa ' . ($this->siswa->delete($id) ? 'berhasil' : 'gagal') . ' dihapus!';
+		$message = 'Data siswa ' . ($this->akun->delete($old['id_akun']) and $this->siswa->delete($id) ? 'berhasil' : 'gagal') . ' dihapus!';
 		setMessage($message);
 		redirect('/siswa');
     }
 
 	private function _store()
 	{
-		$data = $this->input->post();
-        $data['is_active'] = 1;
-        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-		unset($data['password_again']);
-        if ($_FILES['foto']['size'] > 0) $data['foto'] = $this->_upload();
-		$message = 'Data siswa ' . ($this->siswa->insert($data) ? 'berhasil' : 'gagal') . ' ditambahkan!';
+		$akun = [
+			'username' => $this->input->post('username') ?: $this->input->post('nis'),
+			'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+			'peran' => 'anggota',
+		];
+		$siswa = [
+			'nis' => $this->input->post('nis'),
+			'nama' => $this->input->post('nama'),
+			'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+			'kelas' => $this->input->post('kelas'),
+			'alamat' => $this->input->post('alamat'),
+			'email' => $this->input->post('email'),
+			'id_akun' => $this->akun->insert($akun),
+		];
+        if ($_FILES['foto']['size'] > 0) $siswa['foto'] = $this->_upload();
+		$message = 'Data siswa ' . ($this->siswa->insert($siswa) ? 'berhasil' : 'gagal') . ' ditambahkan!';
 		setMessage($message);
 		redirect('/siswa');
 	}
@@ -91,12 +102,7 @@ class Siswa extends CI_Controller {
 			unlink("./public/uploads/{$old['foto']}");
 			$data['foto'] = $this->_upload();
 		}
-
-        if ($data['password']=="") 
-            unset($data['password']);
-        else
-            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-
+		
 		$message = 'Data siswa ' . ($this->siswa->update($data, $id) ? 'berhasil' : 'gagal') . ' diedit!';
 		setMessage($message);
 		redirect('/siswa');
@@ -124,7 +130,6 @@ class Siswa extends CI_Controller {
 		$this->form_validation->set_rules('nama', 'Siswa', 'required');
 		$this->form_validation->set_rules('kelas', 'Siswa', 'required');
 		$this->form_validation->set_rules('alamat', 'Siswa', 'required');
-		$this->form_validation->set_rules('email', 'Siswa', 'required|valid_email');
 	}
 }
 

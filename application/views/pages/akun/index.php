@@ -21,9 +21,6 @@
 
         <div class="box box-primary">
             <div class="box-header">
-              <h3 class="box-title">
-                <a href="<?= base_url('admin/baru'); ?>" class="btn btn-primary">Tambah Data</a>
-              </h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -31,9 +28,11 @@
                 <thead>
                     <tr>
                         <th style="width: 20px;">No.</th>
+                        <th>NIS</th>
                         <th>Nama</th>
-                        <th>Email</th>
-                        <th style="width: 150px;" class="notexport">Aksi</th>
+                        <th>Kelas</th>
+                        <th>Username</th>
+                        <th style="width: 100px;" class="notexport">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,11 +40,16 @@
                     <?php foreach($items as $item): ?>
                     <tr>
                         <td><?= $no++; ?></td>
+                        <td><?= $item['nis']; ?></td>
                         <td><?= $item['nama']; ?></td>
-                        <td><?= $item['email']; ?></td>
+                        <td><?= $item['kelas']; ?></td>
+                        <td><?= $item['username']; ?></td>
                         <td>
-                          <a href="<?= base_url("admin/{$item['id_admin']}/reset"); ?>" class="btn btn-info btn-sm" onclick="return confirm('Yakin ingin mereset? Password akan menjadi: admin')">Reset Password</a>
-                          <a href="<?= base_url("admin/{$item['id_admin']}/hapus"); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
+                          <?php if($item['status']==2): ?>
+                          <a href="<?= base_url("akun/{$item['id_akun']}/reset"); ?>" class="btn btn-info btn-sm" onclick="return confirm('Yakin ingin mereset? Password akan menjadi: simptakan')">Reset Password</a>
+                          <?php else: ?>
+                          <button class="btn-sm btn-info btn" disabled>Reset Password</button>
+                          <?php endif; ?>
                         </td>
                     </tr>
                     <?php endforeach; ?>

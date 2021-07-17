@@ -33,6 +33,16 @@
                         <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama" value="<?= set_value('nama'); ?>">
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="jenis_kelamin" class="col-sm-2 control-label">Jenis Kelamin</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
+                            <?php foreach(['L' => 'Laki-laki', 'P' => 'Perempuan'] as $key => $val): ?>
+                              <option value="<?= $key; ?>"><?= $val; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
                 <div class="form-group <?= isInvalid('kelas') ?>">
                     <label for="kelas" class="col-sm-2 control-label">Kelas</label>
                     <div class="col-sm-10">
@@ -49,6 +59,12 @@
                     <label for="email" class="col-sm-2 control-label">Email</label>
                     <div class="col-sm-10">
                         <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email" value="<?= set_value('email'); ?>">
+                    </div>
+                </div>
+                <div class="form-group <?= isInvalid('username') ?>">
+                    <label for="username" class="col-sm-2 control-label">Username</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan Username (Jika kosong, username disamakan dengan NIS)" value="<?= set_value('username'); ?>">
                     </div>
                 </div>
                 <div class="form-group <?= isInvalid('password') ?>">
@@ -68,7 +84,7 @@
                     <div class="col-sm-10 row">
                       <div class="col-md-6 col-6">
                         <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="foto" name="foto" required>
+                          <input type="file" class="custom-file-input" id="foto" name="foto">
                           <label class="custom-file-label" for="foto" data-browse="Cari">Pilih Gambar (maks: 2048KB)</label>
                         </div>
                       </div>

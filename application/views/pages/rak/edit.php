@@ -27,6 +27,12 @@
                         <input type="text" class="form-control" id="rak" name="rak" placeholder="Rak" value="<?= set_value('rak', $item['rak']); ?>">
                     </div>
                 </div>
+                <div class="form-group <?= isInvalid('keterangan') ?>">
+                    <label for="keterangan" class="col-sm-2 control-label">Keterangan</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="keterangan" value="<?= set_value('keterangan', $item['keterangan']); ?>">
+                    </div>
+                </div>
             </div>
             <!-- /.box-body -->
             <div class="box-footer">

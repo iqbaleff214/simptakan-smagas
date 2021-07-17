@@ -13,9 +13,13 @@
   <link rel="stylesheet" href="<?= asset('bower_components/font-awesome/css/font-awesome.min.css') ?>">
   <!-- Ionicons -->
   <link rel="stylesheet" href="<?= asset('bower_components/Ionicons/css/ionicons.min.css') ?>">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="<?= asset('bower_components/select2/dist/css/select2.min.css') ?>">
   <!-- DataTables -->
   <link rel="stylesheet" href="<?= asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') ?>">
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.9/css/fixedHeader.bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= asset('dist/css/AdminLTE.min.css') ?>">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -59,17 +63,15 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?= asset('dist/img/avatar5.png') ?>" class="user-image" alt="User Image">
               <span class="hidden-xs"><?= $_SESSION['nama']; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<?= asset('dist/img/avatar5.png') ?>" class="img-circle" alt="User Image">
-
+                <img src="<?= $_SESSION['foto'] ? upload($_SESSION['foto']) : asset('img/avatar.png') ?>" class="img-circle" alt="User Image">
                 <p>
                   <?= $_SESSION['nama']; ?>
-                  <small><?= $_SESSION['email']; ?></small>
+                  <small><?= $_SESSION['jabatan']; ?></small>
                 </p>
               </li>
               <!-- Menu Body -->
