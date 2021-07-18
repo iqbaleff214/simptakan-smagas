@@ -39,7 +39,7 @@
                         <th>Alamat</th>
                         <th>Email</th>
                         <?php if(isJabatan('Petugas')): ?>
-                        <th style="width: 150px;" class="notexport">Aksi</th>
+                        <th style="width: 190px;" class="notexport">Aksi</th>
                         <?php endif; ?>
                     </tr>
                 </thead>
@@ -55,6 +55,7 @@
                         <?php if(isJabatan('Petugas')): ?>
                         <td>
                           <a href="<?= base_url("siswa/{$item['nis']}"); ?>" class="btn btn-success btn-sm">Lihat</a>
+                          <a href="<?= base_url("siswa/{$item['nis']}/cetak"); ?>" target="_blank" class="btn btn-warning btn-sm">Cetak</a>
                           <a href="<?= base_url("siswa/{$item['nis']}/edit"); ?>" class="btn btn-info btn-sm">Edit</a>
                           <a href="<?= base_url("siswa/{$item['nis']}/hapus"); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
                         </td>

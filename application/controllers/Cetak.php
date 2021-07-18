@@ -24,17 +24,17 @@ class Cetak extends CI_Controller {
         $this->pdf->load_view('pages/cetak/bukti', $data);
     }
 
-    public function anggota()
+    public function anggota($nis=null)
     {
         $data = [
-            'item' => $this->siswa->get($_SESSION['nis']),
+            'item' => $this->siswa->get($nis ?: $_SESSION['nis']),
             'foto' => $_SESSION['foto'] ? upload($_SESSION['foto']) : asset('img/avatar.png')
         ];
     
         $this->load->library('pdf');
     
         $this->pdf->setPaper('A4', 'potrait');
-        $this->pdf->filename = "kartu-anggota-". $_SESSION['nis'] .".pdf";
+        $this->pdf->filename = "kartu-anggota-". ($nis ?: $_SESSION['nis']) .".pdf";
         $this->pdf->load_view('pages/cetak/kartu', $data);
     }
 }

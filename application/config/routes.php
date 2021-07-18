@@ -121,6 +121,7 @@ $route['siswa/baru'] = 'siswa/create';
 $route['siswa/(:any)'] = 'siswa/show/$1';
 $route['siswa/(:any)/edit'] = 'siswa/edit/$1';
 $route['siswa/(:any)/hapus'] = 'siswa/delete/$1';
+$route['siswa/(:any)/cetak'] = 'cetak/anggota/$1';
 
 $route['petugas/baru'] = 'petugas/create';
 $route['petugas/(:num)'] = 'petugas/show/$1';
