@@ -67,7 +67,7 @@ class Siswa extends CI_Controller {
     {
         $old = $this->siswa->get($id);
         if ($old['foto']) unlink("./public/uploads/{$old['foto']}");
-		$message = 'Data siswa ' . ($this->akun->delete($old['id_akun']) and $this->siswa->delete($id) ? 'berhasil' : 'gagal') . ' dihapus!';
+		$message = 'Data siswa ' . (($this->akun->delete($old['id_akun']) and $this->siswa->delete($id)) ? 'berhasil' : 'gagal') . ' dihapus!';
 		setMessage($message);
 		redirect('/siswa');
     }

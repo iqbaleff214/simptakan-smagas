@@ -53,6 +53,9 @@
                         <th>Pengembalian</th>
                         <th>Denda</th>
                         <th>Status</th>
+                        <?php if(isJabatan('Petugas')): ?>
+                        <th>Bukti</th>
+                        <?php endif; ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -68,6 +71,11 @@
                         <td><?= $item['tanggal_kembali'] ? date('d/m/Y', strtotime($item['tanggal_kembali'])) : '-'; ?></td>
                         <td>Rp<?= time() > $tenggat ? number_format(floor((time()-$tenggat) / 60 / 60 / 24) * 500,2,",",".") : '0'; ?></td>
                         <td><?= $item['tanggal_kembali'] ? 'Dikembalikan' : 'Dipinjam'; ?></td>
+                        <?php if(isJabatan('Petugas')): ?>
+                        <td>
+                            <a href="<?= base_url("bukti-pinjam-buku/{$item['id_peminjaman']}"); ?>" target="_blank" class="btn btn-primary btn-sm">Cetak</a>
+                        </td>
+                        <?php endif; ?>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
