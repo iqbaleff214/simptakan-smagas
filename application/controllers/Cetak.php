@@ -16,6 +16,7 @@ class Cetak extends CI_Controller {
         $data = [
             'item' => $this->detail->getDetail($id),
         ];
+        var_dump($data);die;
         // echo 'tes';die;
         $this->load->library('pdf');
     
