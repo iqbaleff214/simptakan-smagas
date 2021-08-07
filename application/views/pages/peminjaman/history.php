@@ -63,13 +63,14 @@
                     <tr>
                         <?php $pinjam = strtotime($item['tanggal_pinjam']) ; ?>
                         <?php $tenggat = strtotime($item['tanggal_tenggat']) ; ?>
+                        <?php $kembali = strtotime($item['tanggal_kembali'] ?? time()); ?>
                         <td><?= $item['no_peminjaman']; ?></td>
                         <td><?= $item['nama'] ?: '-'; ?></td>
                         <td><?= $item['judul'] ?: '-'; ?></td>
                         <td><?= date('d/m/Y', $pinjam); ?></td>
                         <td><?= date('d/m/Y', $tenggat); ?></td>
                         <td><?= $item['tanggal_kembali'] ? date('d/m/Y', strtotime($item['tanggal_kembali'])) : '-'; ?></td>
-                        <td>Rp<?= time() > $tenggat ? number_format(floor((time()-$tenggat) / 60 / 60 / 24) * 500,2,",",".") : '0'; ?></td>
+                        <td>Rp<?= $kembali > $tenggat ? number_format(floor(($kembali-$tenggat) / 60 / 60 / 24) * 500,2,",",".") : '0'; ?></td>
                         <td><?= $item['tanggal_kembali'] ? 'Dikembalikan' : 'Dipinjam'; ?></td>
                         <?php if(isJabatan('Petugas')): ?>
                         <td>
