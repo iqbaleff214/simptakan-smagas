@@ -12,6 +12,17 @@ class Buku_model extends MY_Model
 		return $this->getAll();
 	}
 
+	public function getAllPopular()
+	{
+		$id = [];
+		$books = $this->db->group_by('id_buku')->select('id_buku as id, count(id_buku) as jumlah')->get('peminjaman_detail')->result_array();
+		foreach ($books as $item) {
+			$id[] = $item['id'];
+		}
+		$this->db->where_in("{$this->table}.{$this->id}", $id);
+		return $this->getAllData();
+	}
+
 	public function getAllData()
 	{
 		$this->db->select("{$this->table}.*, rak.rak as rak, penerbit.penerbit, kategori.kategori, klasifikasi.klasifikasi");

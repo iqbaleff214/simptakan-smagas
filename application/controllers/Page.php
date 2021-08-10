@@ -5,7 +5,6 @@ class Page extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-		if (!isLogin()) return redirect('/login');
 
         $this->load->model(Buku_model::class, 'buku');
         $this->load->model(Siswa_model::class, 'siswa');
@@ -16,15 +15,22 @@ class Page extends CI_Controller {
         $this->load->model(PengadaanDetail_model::class, 'pengadaan_detail');
         $this->load->model(BukuKeluar_model::class, 'pengeluaran');
         $this->load->model(Pengunjung_model::class, 'pengunjung');
+
+        $this->load->model(Petugas_model::class, 'petugas');
     }
 
 	public function index()
 	{
-        redirect('login');
+        $data = [
+            'buku' => $this->buku->getAllPopular(),
+            'petugas' => $this->petugas->getAll(),
+        ];
+        $this->load->view('pages/frontend', $data);
 	}
 
 	public function dashboard()
 	{
+		if (!isLogin()) return redirect('/login');
         if (isJabatan('Anggota') or isJabatan('Pengunjung')) return redirect('katalog');
         $data = [
             'title' => 'Dashboard',
@@ -43,6 +49,7 @@ class Page extends CI_Controller {
 
     public function peminjaman()
     {
+		if (!isLogin()) return redirect('/login');
         $data = [
             'title' => 'Laporan Peminjaman',
             'sidebar' => ['peminjaman'],
@@ -54,6 +61,7 @@ class Page extends CI_Controller {
 
     public function peminjaman_today()
     {
+		if (!isLogin()) return redirect('/login');
         $data = [
             'title' => 'Laporan Peminjaman',
             'sidebar' => ['peminjaman'],
@@ -65,6 +73,7 @@ class Page extends CI_Controller {
 
     public function pengadaan()
     {
+		if (!isLogin()) return redirect('/login');
         $data = [
             'title' => 'Laporan Pengadaan',
             'sidebar' => ['pengadaan'],
@@ -76,6 +85,7 @@ class Page extends CI_Controller {
 
     public function pengeluaran()
     {
+		if (!isLogin()) return redirect('/login');
         $data = [
             'title' => 'Laporan Pengeluaran',
             'sidebar' => ['pengeluaran'],
@@ -87,6 +97,7 @@ class Page extends CI_Controller {
 
     public function pengunjung()
     {
+		if (!isLogin()) return redirect('/login');
         $data = [
             'title' => 'Laporan Kunjungan',
             'sidebar' => ['pengunjung'],
@@ -98,6 +109,7 @@ class Page extends CI_Controller {
 
     public function pengunjung_today()
     {
+		if (!isLogin()) return redirect('/login');
         $data = [
             'title' => 'Laporan Kunjungan',
             'sidebar' => ['pengunjung'],

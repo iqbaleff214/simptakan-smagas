@@ -56,7 +56,7 @@ class Auth extends CI_Controller {
     public function logout()
     {
         if (isLogin()) logout();
-        redirect('/login');
+        redirect('/');
     }
 
     private function _forgot() {
