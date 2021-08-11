@@ -19,6 +19,9 @@ class Buku_model extends MY_Model
 		foreach ($books as $item) {
 			$id[] = $item['id'];
 		}
+		if (empty($id)) {
+			return false;
+		}
 		$this->db->where_in("{$this->table}.{$this->id}", $id);
 		return $this->getAllData();
 	}
