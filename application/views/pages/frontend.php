@@ -40,6 +40,7 @@
                 <a class="btn btn-warning btn-xl text-uppercase " href="<?= site_url('login') ?>">Login</a>
             </div>
         </header>
+        <?php if($buku): ?>
         <!-- Buku Populer Grid-->
         <section class="page-section bg-light" id="Buku_Populer">
             <div class="container">
@@ -111,6 +112,7 @@
                 </div>
             </div>
         </section>
+        <?php endif; ?>
         <!-- About-->
         <section class="page-section" id="about">
             <div class="container">
