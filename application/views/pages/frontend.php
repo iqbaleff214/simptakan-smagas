@@ -25,7 +25,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <?php if($buku): ?>
                         <li class="nav-item"><a class="nav-link" href="#Buku_Populer">Buku Populer</a></li>
+                        <?php endif; ?>
                         <li class="nav-item"><a class="nav-link" href="#about">Alamat</a></li>
                         <li class="nav-item"><a class="nav-link" href="#team">Info Pustakawan</a></li>
                     </ul>
