@@ -10,4 +10,9 @@ class Siswa_model extends MY_Model
     {
         return $this->db->get_where($this->table, ['id_akun' => $id])->row_array();
     }
+
+    public function getByEmail($email)
+    {
+        return $this->db->get_where($this->table, ['email' => $email])->row_array();
+    }
 }

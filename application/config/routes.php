@@ -56,6 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'auth';
 $route['logout'] = 'auth/logout';
 $route['lupa-password'] = 'auth/forgot';
+$route['reset'] = 'auth/reset';
 $route['logbook'] = 'auth/logbook';
 
 $route['katalog'] = 'katalog';

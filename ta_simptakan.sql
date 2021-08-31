@@ -192,3 +192,11 @@ create table if not exists siswa
 alter table siswa
 	add primary key (nis);
 
+
+create table if not exists password_reset
+(
+	id int auto_increment primary key,
+	id_akun int null,
+	token varchar(255) not null
+);
+

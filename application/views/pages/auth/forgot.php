@@ -13,11 +13,13 @@
   <?php endif; ?>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Lupa password</p>
+  <p class="login-box-msg">Masukkan username untuk reset password oleh Admin.</p>
+  <p class="login-box-msg">atau</p>
+  <p class="login-box-msg">Masukkan email untuk reset password mandiri.</p>
 
     <form action="<?= current_url(); ?>" method="post">
       <div class="form-group has-feedback <?= isInvalid('username'); ?>">
-        <input type="text" class="form-control" placeholder="Masukkan username Anda" name="username" value="<?= set_value('username'); ?>">
+        <input type="text" class="form-control" placeholder="Masukkan username atau email Anda" name="username" value="<?= set_value('username'); ?>">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="row">

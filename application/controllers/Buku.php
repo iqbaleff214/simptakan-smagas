@@ -75,8 +75,6 @@ class Buku extends CI_Controller {
             'item' => $item,
         ];
 
-        // var_dump($item);die;
-
 		view('buku/show', $data);
 	}
 
